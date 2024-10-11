@@ -27,27 +27,27 @@ namespace String_and_StringBuilder
             string cesaro = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.";
             StringBuilder sbInput = new StringBuilder(cesaro);
             Random rnd = new Random();
-            int shift = 3 /*rnd.Next(1, 10)*/;
+            int shift = rnd.Next(1, 10);
 
             for(int i = 0; i < sbInput.Length; i++)
             {
-                int tmp = 0;
-                while (tmp < shift)
+                int tmp1 = 0;
+                while (tmp1 < shift)
                 {
 
                     if (sbInput[i] == 'z' || sbInput[i] == 'Z')
                     {
                         sbInput[i] = (char)(sbInput[i]-25);
-                        tmp++;
+                        tmp1++;
                     }
 
-                    if (tmp == shift)
+                    if (tmp1 == shift)
                         break;
 
                     if (Char.IsLetter(sbInput[i]))
                     {
                         sbInput[i] = (char)(sbInput[i] + 1);
-                        tmp++;
+                        tmp1++;
                     }
                     else
                         break;
@@ -139,24 +139,24 @@ namespace String_and_StringBuilder
 
             string[] words = { "die", "end" };
 
-            StringBuilder sb = new StringBuilder(value);
+            StringBuilder sbReplace = new StringBuilder(value);
             int totalReplacements = 0;
 
             foreach (string word in words)
             {
                 int wordLength = word.Length;
-                int index = sb.ToString().IndexOf(word);
+                int index = sbReplace.ToString().IndexOf(word);
 
                 while (index != -1)
                 {
-                    sb.Remove(index, wordLength);
-                    sb.Insert(index, new string('*', wordLength));
+                    sbReplace.Remove(index, wordLength);
+                    sbReplace.Insert(index, new string('*', wordLength));
                     totalReplacements++;
-                    index = sb.ToString().IndexOf(word, index);
+                    index = sbReplace.ToString().IndexOf(word, index);
                 }
             }
 
-            Console.WriteLine("Результат:\n" + sb.ToString());
+            Console.WriteLine("Результат:\n" + sbReplace.ToString());
             Console.WriteLine($"\nКоличество замен: {totalReplacements}");
             #endregion
         }
